@@ -37,11 +37,7 @@ So for this you will need dataAcitons to do the below:
 
     Then save and publish
 
-4 - Import the forth one ["Get-Survey"](/docs/dataAction/Get-Survey.json) as a "Genesys Cloud Data Action" type as this is an internal API call.
-
-    Then save and publish
-
-5 - First create the "Web Services Data Action" Integration with a UserDefined Auth and add the "authorization" for the field name with the "Bearer " followed by the API Key you get given from the website setup. In this example im using this external service to give back a shortened URL as if not you go over the max number of characters the message will not be able to be sent. Details as well as how to create an account to get your own key can be found here: ["https://tinyurl.com/app/"](https://tinyurl.com/app/)
+4 - First create the "Web Services Data Action" Integration with a UserDefined Auth and add the "authorization" for the field name with the "Bearer " followed by the API Key you get given from the website setup. In this example im using this external service to give back a shortened URL as if not you go over the max number of characters the message will not be able to be sent. Details as well as how to create an account to get your own key can be found here: ["https://tinyurl.com/app/"](https://tinyurl.com/app/)
 
 ![](/docs/images/createIntegration.png?raw=true)
 
@@ -49,7 +45,7 @@ Import the fifth one ["Tiny-URL"](/docs/dataAction/Tiny-URL.json) as a "Web Serv
 
     Then save and publish
 
-6 - Import the sixth one ["Send-Agentless-Message"](/docs/dataAction/Send-Agentless-Message.json) as a "Genesys Cloud Data Action" type as this is an internal API call.
+5 - Import the sixth one ["Send-Agentless-Message"](/docs/dataAction/Send-Agentless-Message.json) as a "Genesys Cloud Data Action" type as this is an internal API call.
 
     Then save and publish
 
