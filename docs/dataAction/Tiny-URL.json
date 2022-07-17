@@ -1,0 +1,47 @@
+{
+  "name": "Tiny URL",
+  "integrationType": "custom-rest-actions",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "https://api.tinyurl.com/create",
+      "requestType": "POST",
+      "headers": {
+        "authorization": "${credentials.authorization}"
+      },
+      "requestTemplate": "{\n  \"url\": \"${input.longURL}\"\n}"
+    },
+    "response": {
+      "translationMap": {
+        "tiny_url": "$.data.tiny_url"
+      },
+      "translationMapDefaults": {},
+      "successTemplate": "{\"tiny_url\": ${tiny_url} }"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "longURL": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "output": {
+      "successSchema": {
+        "type": "object",
+        "properties": {
+          "tiny_url": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "secure": false
+}

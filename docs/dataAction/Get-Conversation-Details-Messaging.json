@@ -1,0 +1,65 @@
+{
+  "name": "Get Conversation Details - Messaging",
+  "integrationType": "purecloud-data-actions",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "/api/v2/conversations/messages/${input.conversationID}",
+      "requestType": "GET",
+      "headers": {},
+      "requestTemplate": "${input.rawRequest}"
+    },
+    "response": {
+      "translationMap": {
+        "agentId": "$.participants[?(@.purpose ==\"agent\")].id",
+        "fromAddressId": "$.participants[?(@.purpose ==\"acd\")].fromAddress.addressNormalized",
+        "toAddressId": "$.participants[?(@.purpose ==\"acd\")].toAddress.addressNormalized"
+      },
+      "translationMapDefaults": {},
+      "successTemplate": "{\n   \"agentId\": ${agentId}\n ,  \"fromAddressId\": ${fromAddressId}\n,  \"toAddressId\": ${toAddressId}\n}"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "conversationID": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "output": {
+      "successSchema": {
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "array",
+            "items": {
+              "title": "agent",
+              "type": "string"
+            }
+          },
+          "fromAddressId": {
+            "type": "array",
+            "items": {
+              "title": "fromAddress",
+              "type": "string"
+            }
+          },
+          "toAddressId": {
+            "type": "array",
+            "items": {
+              "title": "toAddress",
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "secure": false
+}

@@ -1,0 +1,48 @@
+{
+  "name": "Get MediaURL",
+  "integrationType": "purecloud-data-actions",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "/api/v2/conversations/${input.conversationid}/recordings/${input.recordingid}?download=true&fileName=Message-${input.conversationid}&locale=en-AU&messageFormatId=zip",
+      "requestType": "GET",
+      "headers": {},
+      "requestTemplate": "${input.rawRequest}"
+    },
+    "response": {
+      "translationMap": {
+        "mediaURL": "$.mediaUris.S.mediaUri"
+      },
+      "translationMapDefaults": {},
+      "successTemplate": "{\"mediaURL\": ${mediaURL}}"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "conversationid": {
+            "type": "string"
+          },
+          "recordingid": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "output": {
+      "successSchema": {
+        "type": "object",
+        "properties": {
+          "mediaURL": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "secure": false
+}
