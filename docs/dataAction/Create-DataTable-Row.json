@@ -1,0 +1,50 @@
+{
+  "name": "Create-DataTable-Row",
+  "integrationType": "purecloud-data-actions",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "/api/v2/flows/datatables/${input.dataTableId}/rows",
+      "requestType": "POST",
+      "headers": {},
+      "requestTemplate": "{\n\"KEY\": \"${input.KEY}\",\n\"transcript\": \"${input.transcript}\",\n\"survey\": \"${input.survey}\"\n}"
+    },
+    "response": {
+      "translationMap": {},
+      "translationMapDefaults": {},
+      "successTemplate": "${rawResult}"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "title": "survey",
+        "type": "object",
+        "properties": {
+          "KEY": {
+            "type": "string"
+          },
+          "transcript": {
+            "type": "string"
+          },
+          "survey": {
+            "type": "string"
+          },
+          "dataTableId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "output": {
+      "successSchema": {
+        "title": "response",
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true
+      }
+    }
+  },
+  "secure": false
+}

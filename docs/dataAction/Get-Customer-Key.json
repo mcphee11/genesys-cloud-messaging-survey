@@ -1,20 +1,20 @@
 {
-  "name": "Get-MediaURL",
+  "name": "Get-Customer-Key",
   "integrationType": "purecloud-data-actions",
   "actionType": "custom",
   "config": {
     "request": {
-      "requestUrlTemplate": "/api/v2/conversations/${input.conversationid}/recordings/${input.recordingid}?download=true&fileName=Message-${input.conversationid}&locale=en-AU&messageFormatId=zip",
+      "requestUrlTemplate": "/api/v2/conversations/${input.conversationId}",
       "requestType": "GET",
       "headers": {},
       "requestTemplate": "${input.rawRequest}"
     },
     "response": {
       "translationMap": {
-        "mediaURL": "$.mediaUris.S.mediaUri"
+        "token": "$.participants[?(@.purpose ==\"customer\")].attributes.token"
       },
       "translationMapDefaults": {},
-      "successTemplate": "{\"mediaURL\": ${mediaURL}}"
+      "successTemplate": "{\n  \"token\": ${token}\n }"
     }
   },
   "contract": {
@@ -22,10 +22,7 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "conversationid": {
-            "type": "string"
-          },
-          "recordingid": {
+          "conversationId": {
             "type": "string"
           }
         },
@@ -36,8 +33,12 @@
       "successSchema": {
         "type": "object",
         "properties": {
-          "mediaURL": {
-            "type": "string"
+          "token": {
+            "type": "array",
+            "items": {
+              "title": "stringid",
+              "type": "string"
+            }
           }
         },
         "additionalProperties": true

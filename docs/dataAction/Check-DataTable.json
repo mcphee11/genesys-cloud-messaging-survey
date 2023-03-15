@@ -1,31 +1,30 @@
 {
-  "name": "Get-MediaURL",
+  "name": "Check-DataTable",
   "integrationType": "purecloud-data-actions",
   "actionType": "custom",
   "config": {
     "request": {
-      "requestUrlTemplate": "/api/v2/conversations/${input.conversationid}/recordings/${input.recordingid}?download=true&fileName=Message-${input.conversationid}&locale=en-AU&messageFormatId=zip",
+      "requestUrlTemplate": "/api/v2/flows/datatables/${input.dataTableId}/rows/${input.KEY}",
       "requestType": "GET",
       "headers": {},
-      "requestTemplate": "${input.rawRequest}"
+      "requestTemplate": "{\n\"KEY\": \"${input.KEY}\",\n\"transcript\": \"${input.transcript}\",\n\"survey\": \"${input.survey}\"\n}"
     },
     "response": {
-      "translationMap": {
-        "mediaURL": "$.mediaUris.S.mediaUri"
-      },
+      "translationMap": {},
       "translationMapDefaults": {},
-      "successTemplate": "{\"mediaURL\": ${mediaURL}}"
+      "successTemplate": "${rawResult}"
     }
   },
   "contract": {
     "input": {
       "inputSchema": {
+        "title": "survey",
         "type": "object",
         "properties": {
-          "conversationid": {
+          "KEY": {
             "type": "string"
           },
-          "recordingid": {
+          "dataTableId": {
             "type": "string"
           }
         },
@@ -34,12 +33,9 @@
     },
     "output": {
       "successSchema": {
+        "title": "response",
         "type": "object",
-        "properties": {
-          "mediaURL": {
-            "type": "string"
-          }
-        },
+        "properties": {},
         "additionalProperties": true
       }
     }

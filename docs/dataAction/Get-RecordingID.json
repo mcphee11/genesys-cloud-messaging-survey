@@ -1,5 +1,5 @@
 {
-  "name": "Get RecordingID",
+  "name": "Get-RecordingID",
   "integrationType": "purecloud-data-actions",
   "actionType": "custom",
   "config": {
