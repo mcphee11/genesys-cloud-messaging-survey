@@ -1,5 +1,6 @@
 const datatableId = 'ENTER_YOUR_DATATABLE'
 const apiUrl = 'ENTER_YOUR_URL'
+const deploymentId = 'WEBMESSAGING_DEPLOYMENTID'
 let conversationEnd
 conversationEnd ? sessionStorage.getItem('conversationEnd') : true
 let retry = true
@@ -8,20 +9,20 @@ Genesys('subscribe', 'Launcher.ready', function (o) {
   //set the data on start
   Genesys('subscribe', 'MessagingService.started', function () {
     Genesys('command', 'Database.set', {
-      messaging: { customAttributes: { token: JSON.parse(localStorage.getItem('_actmu')).value } },
+      messaging: { customAttributes: { token: JSON.parse(localStorage.getItem(`_${deploymentId}:actmu`)).value } },
     })
   })
   //recieve disconnected event
   Genesys('subscribe', 'MessagingService.conversationDisconnected', function () {
-      if(!conversationEnd){
-        conversationEnd = true
-        sessionStorage.setItem('conversationEnd', true)
-        console.log('end of conversation')
-        setTimeout(async function () {
-          let urls = getUrls()
-          console.log(urls)
-        }, 15000)
-      }
+    if (!conversationEnd) {
+      conversationEnd = true
+      sessionStorage.setItem('conversationEnd', true)
+      console.log('end of conversation')
+      setTimeout(async function () {
+        let urls = getUrls()
+        console.log(urls)
+      }, 15000)
+    }
   })
   //recieve connected event
   Genesys('subscribe', 'Conversations.started', function () {
@@ -32,7 +33,7 @@ Genesys('subscribe', 'Launcher.ready', function (o) {
 })
 
 async function getUrls() {
-  let token = JSON.parse(localStorage.getItem('_actmu')).value
+  let token = JSON.parse(localStorage.getItem(`_${deploymentId}:actmu`)).value
   let data = {
     check: 'lego',
     rowid: token,
