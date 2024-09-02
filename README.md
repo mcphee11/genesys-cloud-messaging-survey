@@ -2,7 +2,7 @@
 
 ## `HUGE CHANGE`
 
-For anyone that has referenced this repo in the past the previous method is listed at the bottom of this readMe inside a collapsed `Details` section. For new people to this repo while the previous method did work it was quite complex and people were struggling with how to implement it. As well as since then the Messenger Widget has released the [Toaster Plugin](https://developer.genesys.cloud/commdigital/digital/webmessaging/messengersdk/SDKCommandsEvents/toasterPlugin) which makes building the "popup" a LOT nicer and more native to the UI experience. As well as it supports multiply locations in the widget as as they move around it will follow them in the UI. I have also moved of the `Transcript` part of the previous version of this example and will put it in its own repo to split them up. Once I have completed that I will link it in here for reference.
+For anyone that has referenced this repo in the past the previous method is listed at the bottom of this readMe inside a collapsed `Details` section. For new people to this repo while the previous method did work it was quite complex and people were struggling with how to implement it. As well as since then the Messenger Widget has released the [Toaster Plugin](https://developer.genesys.cloud/commdigital/digital/webmessaging/messengersdk/SDKCommandsEvents/toasterPlugin) which makes building the "popup" a LOT nicer and more native to the UI experience. As well as it supports multiply locations in the widget as as they move around it will follow them in the UI. I have also moved of the `Transcript` part of the previous version of this example and will put it in its own repo to split them up. This example for transcript can be found [here](https://github.com/mcphee11/webmessenger-transcript-download)
 
 ![](/docs/images/popup_in_message.png?raw=true)
 
@@ -125,6 +125,10 @@ Now that you are all done test out the survey. NOTE that if you "continue" an ex
 If you open up a Performance Workspace view with "Interactions" you can add the "metric" `External Tag` this will then show the columns with the "NPS: X" answers in them and if you want to "filter" you can search for `External Tag` and then type in the score you want for example to see all the ones that gave you a score of 0 you would type "NPS: 0"
 
 ![](/docs/images/report.png?raw=true)
+
+## Final thoughts
+
+If you do require more then one question and want to use the native Web Survey solution for analytics etc. This can be done and I recommend using the [voice survey](https://github.com/mcphee11/genesys-cloud-voice-survey) solution as an example of how you could take the answers given to this BOT in the above and then use a `WorkFlow` to cache the answers and POST scores to the web survey URL. This would require a survey URL to be generated so only work for agent involved interactions but is completely achievable as well. I did NOT add this to this documentation as I have already documented that process in the voice example as well as it was to complex for a LOT of users so for those that want to do it reference the voice for the required DataActions etc.
 
 <summary><h3>👨‍💻 Previous Method</h3></summary>
 <details>
