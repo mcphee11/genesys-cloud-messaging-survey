@@ -41,6 +41,7 @@ Genesys('subscribe', 'Toaster.ready', function (e) {
     Genesys('command', 'MessagingService.sendMessage', {
       message: 'lets do a survey',
     })
+    Genesys('command', 'Messenger.open')
   })
   Genesys('subscribe', 'Toaster.declined', function (e) {
     console.log('Toaster was declined', e)
