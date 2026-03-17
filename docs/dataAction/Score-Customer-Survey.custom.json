@@ -1,0 +1,46 @@
+{
+  "name": "Score-Customer-Survey",
+  "integrationType": "custom-rest-actions",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "https://api.mypurecloud.com.au/api/v2/quality/surveys/scorable?customerSurveyUrl=$esc.uriEncode(${input.customerSurveyUrl})",
+      "requestType": "PUT",
+      "headers": {},
+      "requestTemplate": "{\n  \"answers\": {\n    \"questionGroupScores\": [\n      {\n        \"questionGroupId\": \"${input.questionGroupId}\",\n        \"questionScores\": [\n          {\n            \"questionId\": \"${input.questionId}\",\n            \"npsScore\": ${input.NPS}\n          }\n        ]\n      }\n    ]\n  },\n  \"status\": \"Finished\"\n}"
+    },
+    "response": {
+      "translationMap": {},
+      "translationMapDefaults": {},
+      "successTemplate": "${rawResult}"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "questionGroupId": {
+            "type": "string"
+          },
+          "questionId": {
+            "type": "string"
+          },
+          "NPS": {
+            "type": "integer"
+          },
+          "customerSurveyUrl": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "output": {
+      "successSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  "secure": false
+}

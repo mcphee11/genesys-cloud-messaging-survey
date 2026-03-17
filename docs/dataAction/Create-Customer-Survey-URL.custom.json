@@ -1,20 +1,18 @@
 {
-  "name": "Get-MediaURL",
+  "name": "Create-Customer-Survey-URL",
   "integrationType": "purecloud-data-actions",
   "actionType": "custom",
   "config": {
     "request": {
-      "requestUrlTemplate": "/api/v2/conversations/${input.conversationid}/recordings/${input.recordingid}?download=true&fileName=Message-${input.conversationid}&locale=en-AU&messageFormatId=zip",
-      "requestType": "GET",
+      "requestUrlTemplate": "/api/v2/quality/surveys",
+      "requestType": "POST",
       "headers": {},
       "requestTemplate": "${input.rawRequest}"
     },
     "response": {
-      "translationMap": {
-        "mediaURL": "$.mediaUris.S.mediaUri"
-      },
+      "translationMap": {},
       "translationMapDefaults": {},
-      "successTemplate": "{\"mediaURL\": ${mediaURL}}"
+      "successTemplate": "${rawResult}"
     }
   },
   "contract": {
@@ -22,25 +20,23 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "conversationid": {
+          "surveyFormContextId": {
             "type": "string"
           },
-          "recordingid": {
+          "conversationId": {
             "type": "string"
           }
-        },
-        "additionalProperties": true
+        }
       }
     },
     "output": {
       "successSchema": {
         "type": "object",
         "properties": {
-          "mediaURL": {
+          "customerSurveyUrl": {
             "type": "string"
           }
-        },
-        "additionalProperties": true
+        }
       }
     }
   },
