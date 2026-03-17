@@ -66,8 +66,6 @@ Go to the Genesys Cloud [API Explorer](https://developer.genesys.cloud/devapps/a
 Ensure that you copy out the:
 
 - YOUR_FORM_CONTEXT_ID
-- YOUR_QUESTION_GROUP_ID
-- YOUR_QUESTION_ID
 
 ## Step 3 - Deploy the Data Actions
 
